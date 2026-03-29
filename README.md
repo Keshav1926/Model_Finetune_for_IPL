@@ -36,35 +36,35 @@ The IPL sample data is provided in data folder. This data is property of Xansr a
    - Fine-tune your chosen model on the provided IPL Q&A dataset.  
    - Must run reproducibly on CPU or single GPU.  
    - Push your fine-tuned model to a **private Hugging Face repo**.
-   ![Finetuning_in_progress](Images\Finetuning_in_progress.jpeg) 
-   ![Finetuning_Complete](Images\Finetuning_Complete.jpeg)  
+   ![Finetuning_in_progress](Images/Finetuning_in_progress.jpeg) 
+   ![Finetuning_Complete](Images/Finetuning_Complete.jpeg)  
 
 2. **Inference Service (FastAPI)**  
    - Endpoints: `/infer`, `/healthz`, `/readyz`.  
    - Load your model from the **private HF repo** using an access token (`HF_TOKEN` env var).  
    - Provide a `Dockerfile`.
-   ![test_inference_readyz](Images\test_inference_readyz.jpeg) 
-   ![test_inference_healthz](Images\test_inference_healthz.jpeg) 
-   ![test_inference_infer](Images\test_inference_infer.jpeg) 
-   ![Huggingface_repo](Images\Huggingface_repo.jpeg) 
+   ![test_inference_readyz](Images/test_inference_readyz.jpeg) 
+   ![test_inference_healthz](Images/test_inference_healthz.jpeg) 
+   ![test_inference_infer](Images/test_inference_infer.jpeg) 
+   ![Huggingface_repo](Images/Huggingface_repo.jpeg) 
 
 3. **Multi-Agent Orchestration**  
    - Example:  
      - **RetrieverAgent**: computes cricket stats (e.g., runs in last N overs).  
      - **AnalystAgent**: queries fine-tuned model with the stats as context.  
    - Deliverable: `agents/multi_agent.py`.
-   ![multi_agent](Images\multi_agent.jpeg) 
+   ![multi_agent](Images/multi_agent.jpeg) 
 
 4. **Deployment**    
    - Include GPU resource hints.  
    - Inject `HF_TOKEN` as env var.
-   ![model_container_up](Images\model_container_up.jpeg)
+   ![model_container_up](Images/model_container_up.jpeg)
 
 5. **Observability & Testing**  
    - Log latency per request.  
    - Provide one integration test for `/infer`.  
    - Document performance considerations.
-   ![test_inference_inferlog](Images\test_inference_inferlog.jpeg) 
+   ![test_inference_inferlog](Images/test_inference_inferlog.jpeg) 
 
 6. **Model Monitoring (Document)**  
    - In `MODEL_MONITORING.md`, describe how you would monitor accuracy & relevance in production.  
