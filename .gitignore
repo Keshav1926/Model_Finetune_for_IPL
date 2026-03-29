@@ -1,0 +1,18 @@
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+
+# Models/Large Files (if any)
+*.bin
+*.pt
+*.pth
+*.h5
+*.ckpt
+*.safetensors

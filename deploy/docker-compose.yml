@@ -1,0 +1,43 @@
+version: "3.9"
+
+services:
+  phi3-infer:
+    container_name: phi3-infer
+    image: phi3-infer:1        
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    environment:
+      # Hugging Face token for private repo access
+      HF_TOKEN: "hf_YOUR_HF_TOKEN_HERE"
+
+      # Your adapter repo + base model
+      MODEL_REPO: "keshav1926s/phi3-lora-adapter"
+      BASE_MODEL: "microsoft/phi-3-mini-4k-instruct"
+
+      # Runtime settings
+      USE_4BIT: "true"
+      DEVICE: "cuda"
+      PORT: "1926"
+
+    ports:
+      - "1926:1926"
+
+    volumes:
+      - ./cache:/root/.cache/huggingface  # optional: speeds up model loading
+      - ./logs:/app/logs                  # optional: store logs
+
+    command: >
+      uvicorn app:app
+      --host 0.0.0.0
+      --port 1926
+      --workers 1
+
